@@ -1,0 +1,20 @@
+<div class="row top-bar">
+  <button (click)="setShow()">test</button>
+</div>
+
+<hr class="light">
+
+<div class="row">
+  <div class="col-auto">
+    <ul *ngIf="show" class="nav flex-column">
+      <app-side-nav-link></app-side-nav-link>
+      <app-side-nav-link></app-side-nav-link>
+      <app-side-nav-link></app-side-nav-link>
+      <app-side-nav-link></app-side-nav-link>
+    </ul>
+  </div>
+
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
+</div>
