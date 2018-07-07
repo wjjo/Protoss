@@ -22,6 +22,7 @@ import { HomeComponent } from './components/home/home.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { PylonComponent } from './components/pylon/pylon.component';
 import { SideNavLinkComponent } from './components/side-nav-link/side-nav-link.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -35,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     WebviewDirective,
     OverviewComponent,
     PylonComponent,
-    SideNavLinkComponent
+    SideNavLinkComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,

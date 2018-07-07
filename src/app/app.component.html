@@ -1,17 +1,11 @@
 <div class="row top-bar">
-  <button (click)="setShow()">test</button>
+  top-bar area
 </div>
-
 <hr class="light">
 
 <div class="row">
   <div class="col-auto">
-    <ul *ngIf="show" class="nav flex-column">
-      <app-side-nav-link></app-side-nav-link>
-      <app-side-nav-link></app-side-nav-link>
-      <app-side-nav-link></app-side-nav-link>
-      <app-side-nav-link></app-side-nav-link>
-    </ul>
+    <app-side-nav></app-side-nav>
   </div>
 
   <div class="col">
