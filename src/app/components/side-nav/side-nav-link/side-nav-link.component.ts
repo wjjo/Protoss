@@ -7,7 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SideNavLinkComponent implements OnInit {
 
-  @Input() name = 'test';
+  id = -1;
+  name = 'unknown';
+  pageUrl = 'pylon/' + this.id;
+  showText = false;
+  iconText = '';
 
   constructor() {
   }
@@ -15,4 +19,8 @@ export class SideNavLinkComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleShowText() {
+    console.log(this.showText);
+    this.showText = !this.showText;
+  }
 }

@@ -1,7 +1,21 @@
-<button (click)="showSimple = !showSimple">test</button>
-<ul *ngIf="!showSimple" class="nav flex-column">
-  <app-side-nav-link></app-side-nav-link>
-  <app-side-nav-link></app-side-nav-link>
-  <app-side-nav-link></app-side-nav-link>
-  <app-side-nav-link></app-side-nav-link>
+<div id="side-nav">
+  <button type="button" class="btn btn-outline-dark btn-block transparency" (click)="toggleStyle()">
+    <i class="material-icons md-dark md-interactive align-middle">
+      {{toggleIcon}}
+    </i>
+  </button>
+</div>
+
+<ul class="nav flex-column">
+
+  <li *ngFor="let link of sideNavLinks" class="nav-item align-center transparency" routerLink="/{{link.pageUrl}}" routerLinkActive="active">
+    <button type="button" class="btn btn-outline-dark btn-block text-light transparency">
+      <i class="material-icons md-dark">
+        {{link.iconText}}
+      </i>
+      <span *ngIf="!showSimple">
+        {{link.name}}
+      </span>
+    </button>
+  </li>
 </ul>

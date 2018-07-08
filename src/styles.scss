@@ -1,4 +1,7 @@
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'material-design-icons/iconfont/material-icons.css';
+@import 'typeface-roboto/index.css';
+
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
@@ -19,4 +22,9 @@ body,
 
 .text-light {
   color: #c8c8c8 !important;
+}
+
+.transparency {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
 }
