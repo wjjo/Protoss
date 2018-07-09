@@ -1,0 +1,32 @@
+.top-bar {
+  height:50px;
+  margin: 0 !important;
+
+  align-items: center;
+  justify-content: center;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+
+  border-bottom: 1px solid #3c3c3c
+}
+
+.body {
+  height: calc(100% - 50px);
+}
+
+.side-nav {
+  border-right: 1px solid #3c3c3c;
+}
+
+.content {
+  padding: 5px;
+}
+
+.toggle-btn {
+  color: #ff0000;
+  background-color: inherit!important;
+}
+
+.padding-right-0 {
+  padding-right: 0;
+}

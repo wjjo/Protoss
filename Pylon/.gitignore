@@ -1,0 +1,8 @@
+/node_modules/
+/.vscode/
+/dist/
+/deploy/
+/services/
+/workspace/
+package-lock.json
+history.txt
