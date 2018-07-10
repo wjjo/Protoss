@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private modalService: NgbModal) {
     this.serverHosts = [
-      '211.116.223.1',
-      '211.116.223.2',
-      '211.116.223.3',
-      '211.116.223.4'
+      '211.116.223.1:3000',
+      '211.116.223.2:3000',
+      '211.116.223.3:3000',
+      '211.116.223.4:3000'
     ];
     this.serviceNames = [
       'Account',
@@ -35,7 +35,13 @@ export class HomeComponent implements OnInit {
       'Metric',
       'Mission',
       'Project',
-      'Revision'
+      'Revision',
+      'Web',
+      'Config',
+      'SampleA',
+      'SampleB',
+      'SampleC',
+      'SampleD'
     ];
 
     this.serverHosts.forEach(element => {

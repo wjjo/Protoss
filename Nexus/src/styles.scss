@@ -42,6 +42,7 @@ ngx-dnd-container > div {
   border-color: rgba(0, 0, 0, 0) !important;
   display: flex !important;
   flex-wrap: wrap !important;
-  min-width: 400px !important;
+  min-width: 320px !important;
+  max-width: 480px !important;
   min-height: 60px;
 }
