@@ -1,5 +1,32 @@
 <div class="container">
-  <h1 class="title">
+  <button (click)="install()" type="button" class="btn btn-outline-dark border-light">
+    <span class="text-light">Install</span>
+  </button>
+</div>
 
-  </h1>
+<div class="container">
+  <div class="text-center">
+    Services
+    <ngx-dnd-container [model]="serviceNames" ngxDroppable="1" dropZone="1" [dropZone]="1">
+    </ngx-dnd-container>
+  </div>
+
+  <div class="server-list text-center">
+    <div *ngFor="let server of servers" class="text-center">
+      {{server.host}}
+      <ngx-dnd-container [model]="server.serviceNames" dropZone="1" [dropZone]="1">
+      </ngx-dnd-container>
+    </div>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+      <app-new-pylon-modal [servers]=servers [modalRef]="modalRef"></app-new-pylon-modal>
+    </ng-template>
+
+    <button (click)="openNewServerModal(content)" type="button" class="btn btn-outline-dark text-light border-light">
+      <i class="material-icons align-middle">
+        add
+      </i>
+      <span class="align-middle">New Server</span>
+    </button>
+  </div>
 </div>

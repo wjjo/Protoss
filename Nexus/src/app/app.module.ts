@@ -1,27 +1,21 @@
-import 'zone.js/dist/zone-mix';
-import 'reflect-metadata';
-import '../polyfills';
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // NG Translate
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { ElectronService } from './providers/electron.service';
-
-import { WebviewDirective } from './directives/webview.directive';
-
+import { NgxDnDModule } from '@swimlane/ngx-dnd';
+import 'reflect-metadata';
+import 'zone.js/dist/zone-mix';
+import '../polyfills';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { OverviewComponent } from './components/overview/overview.component';
-import { PylonComponent } from './components/pylon/pylon.component';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { NewPylonModalComponent } from './components/new-pylon-modal/new-pylon-modal.component';
+import { WebviewDirective } from './directives/webview.directive';
+import { ElectronService } from './providers/electron.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,9 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     HomeComponent,
     WebviewDirective,
-    OverviewComponent,
-    PylonComponent,
-    SideNavComponent
+    NewPylonModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +40,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
+    NgxDnDModule,
+    NgbModule.forRoot(),
   ],
   providers: [ElectronService],
   bootstrap: [AppComponent]

@@ -1,4 +1,7 @@
+import { Server } from './../../model/server';
+import { Service } from './../../model/service';
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +9,57 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  servers: Server[] = [];
+  services: Service[] = [];
 
-  constructor() { }
+  serverHosts: string[] = [];
+  serviceNames: string[] = [];
 
-  ngOnInit() {
+  modalRef: NgbModalRef;
+
+  constructor(private modalService: NgbModal) {
+    this.serverHosts = [
+      '211.116.223.1',
+      '211.116.223.2',
+      '211.116.223.3',
+      '211.116.223.4'
+    ];
+    this.serviceNames = [
+      'Account',
+      'Analysis',
+      'Baseline',
+      'Defect',
+      'Filter',
+      'FixReference',
+      'Message',
+      'Metric',
+      'Mission',
+      'Project',
+      'Revision'
+    ];
+
+    this.serverHosts.forEach(element => {
+      this.servers.push({ host: element, serviceNames: [] });
+    });
+
+    this.serviceNames.forEach(element => {
+      this.services.push({ name: element });
+    });
   }
 
+  ngOnInit() { }
+
+  openNewServerModal(content) {
+    this.modalRef = this.modalService.open(content, { windowClass: 'dark-modal' });
+  }
+
+  install() {
+    this.servers.forEach(server => {
+      console.log(server.host + '\n');
+
+      server.serviceNames.forEach(serviceName => {
+        console.log(serviceName + '\n');
+      });
+    });
+  }
 }

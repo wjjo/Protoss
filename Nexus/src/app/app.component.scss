@@ -12,6 +12,12 @@
 
 .body {
   height: calc(100% - 50px);
+  margin: 0 !important;
+
+  align-items: center;
+  justify-content: center;
+
+  // overflow: scroll;
 }
 
 .side-nav {

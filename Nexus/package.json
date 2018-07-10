@@ -37,9 +37,16 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
+    "@ng-bootstrap/ng-bootstrap": "^2.2.0",
+    "@swimlane/dragula": "^3.7.3",
+    "@swimlane/ngx-dnd": "^5.0.6",
+    "angular-drag-drop": "^3.2.0",
     "bootstrap": "^4.1.1",
     "material-design-icons": "^3.0.1",
+    "ng2-drag-drop": "^3.0.2",
+    "ng2-dragula": "^1.5.0",
     "popper.js": "^1.14.3",
+    "prettier": "^1.13.7",
     "startbootstrap-simple-sidebar": "^4.0.0",
     "typeface-roboto": "0.0.54"
   },
