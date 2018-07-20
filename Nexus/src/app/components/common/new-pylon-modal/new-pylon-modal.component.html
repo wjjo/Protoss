@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title">New Server</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <label for="form-host">Host</label>
+  <input mdbInputDirective type="text" [(ngModel)]="host" id="form-host" class="form-control" placeholder="x.x.x.x:x">
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="ok();">OK</button>
+</div>

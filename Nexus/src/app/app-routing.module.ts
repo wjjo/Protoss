@@ -1,11 +1,16 @@
-import { HomeComponent } from './components/home/home.component';
+import { MonitorComponent } from './components/monitor/monitor.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'monitor',
+    component: MonitorComponent
   }
 ];
 

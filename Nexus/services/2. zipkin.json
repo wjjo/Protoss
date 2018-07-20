@@ -1,0 +1,10 @@
+{
+  "name":"Zipkin",
+	"serviceType":"springboot",
+	"option": [
+    "-Xmx512m",
+    "-Dspring.profiles.active=localhost",
+    "-Dspring.cloud.config.uri=http://localhost:18000"
+	],
+	"artifactLink" : "http://211.116.223.231/CODESCROLL/STATIC-PACKAGE/raw/develop/Zipkin-0.0.1-SNAPSHOT.jar"
+}

@@ -1,4 +1,8 @@
+import { SystemInfo } from './system-info';
+import { Service } from './Service';
+
 export class Server {
   host: string;
-  serviceNames: string[];
+  services: Service[];
+  systemInfo?: SystemInfo;
 }

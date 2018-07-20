@@ -1,5 +1,6 @@
 |Command|Description|
 |--|--|
+|`npm start`| 개발자 모드(auto-reload) |
 |`npm run ng:serve:web`| Execute the app in the browser |
 |`npm run build`| Build the app. Your built files are in the /dist folder. |
 |`npm run build:prod`| Build the app with Angular aot. Your built files are in the /dist folder. |

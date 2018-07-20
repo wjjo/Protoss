@@ -1,6 +1,5 @@
 .container {
   margin: 0;
-  margin-right: 0;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -13,12 +12,40 @@
     margin: 0;
     padding: 50px 20px;
   }
-  .server-list {
-    display: block;
-  }
+}
+
+.service-list {
+  padding: 10px;
+}
+
+.server-list {
+  padding: 10px;
 }
 
 .text-lg {
   // font-size: 20px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+}
+
+.margin-top-10px {
+  margin-top: 10px;
+}
+
+.btn-float {
+  position: absolute;
+  right: 3rem;
+  bottom: 3rem;
+}
+
+.btn-install {
+  border: 0px;
+  background-color: #f66375;
+}
+
+.btn-install-text {
+  color: white;
+}
+
+.btn-install-text:hover {
+  color: lightblue;
 }

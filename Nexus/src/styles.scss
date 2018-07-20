@@ -1,12 +1,36 @@
-@import 'bootstrap/scss/bootstrap.scss';
+@import '~bootstrap/scss/bootstrap.scss';
 @import 'material-design-icons/iconfont/material-icons.css';
-@import 'typeface-roboto/index.css';
 @import '@swimlane/ngx-dnd/release/index.css';
-
+@import '~ngx-toastr/toastr.css';
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
   src: local('Raleway'), local('Raleway-Regular'), url('./assets/fonts/Raleway-Regular.woff2') format('woff2');
+}
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #1a1b22;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #302f39;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f4152;
 }
 
 html,
@@ -14,11 +38,12 @@ body,
 .container {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
-  // height: 100%;
 }
 
+html,
 body {
   overflow: hidden;
+  height: 100%;
 }
 
 .container {
@@ -38,11 +63,28 @@ body {
   border-color: rgba(0, 0, 0, 0);
 }
 
-ngx-dnd-container > div {
-  border-color: rgba(0, 0, 0, 0) !important;
-  display: flex !important;
+.server-title {
+  margin: 0;
+}
+
+ngx-dnd-container>div {
+  border: 3px solid gray !important;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.1) !important;
   flex-wrap: wrap !important;
   min-width: 320px !important;
   max-width: 480px !important;
   min-height: 60px;
+  margin: 0 !important;
+}
+
+ngx-dnd-item {
+  border: 0px !important;
+  margin: 0px !important;
+  color: #fff;
+}
+
+// 아이템 드래깅 시에 추가되는 클래스
+.gu-mirror {
+  text-align: center;
 }

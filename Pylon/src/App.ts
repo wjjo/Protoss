@@ -53,6 +53,8 @@ class App {
       uploadCount++;
       if(uploadCount > 10000) uploadCount = 0;
 
+      console.log(req.files);
+
       let artifactInfo = req.files['artifact'][0];
       let descriptionInfo = req.files['description'][0];
 
