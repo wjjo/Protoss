@@ -22,14 +22,10 @@ import { InstallComponent } from './components/install/install.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-// import { ServerMonitorComponent } from './components/server-monitor/server-monitor.component';
 import { MonitorComponent } from './components/monitor/monitor.component';
 import {APP_BASE_HREF} from '@angular/common';
-import { NGXChartsComponent } from './components/chart/ngx-charts/ngx-charts.component';
-import { MemoryPieChartComponent } from './components/chart/memory-pie-chart/memory-pie-chart.component';
 import { ServerMonitorComponent } from './components/monitor/server-monitor/server-monitor.component';
 import { ResourceSparklineComponent } from './components/common/chart/resource-sparkline/resource-sparkline.component';
-// import { ResourceSparklineComponent } from './components/common/resource-sparkline/resource-sparkline.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,8 +40,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     InstallComponent,
     ServerMonitorComponent,
     MonitorComponent,
-    NGXChartsComponent,
-    MemoryPieChartComponent,
     ResourceSparklineComponent,
   ],
   imports: [
