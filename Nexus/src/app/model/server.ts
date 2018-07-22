@@ -1,5 +1,5 @@
 import { SystemInfo } from './system-info';
-import { Service } from './Service';
+import { Service } from './service';
 
 export class Server {
   host: string;

@@ -1,0 +1,21 @@
+<div class="row">
+  {{server.host}}
+</div>
+
+<div class="row">
+  <div class="col-auto">
+    <div *ngFor="let service of server.services">{{service.name}}</div>
+    <div>Service1</div>
+    <div>Service2</div>
+    <div>Service3</div>
+    <div>Service4</div>
+    <div>Service5</div>
+  </div>
+  <div class="col-auto">
+    <app-resource-sparkline [data]="cpuUsage"></app-resource-sparkline>
+  </div>
+  <div class="col-auto">
+    <app-resource-sparkline [data]="ramUsage"></app-resource-sparkline>
+  </div>
+  {{txt}}
+</div>

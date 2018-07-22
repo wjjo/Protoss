@@ -1,4 +1,4 @@
-import { Server } from './../../../model/Server';
+import { Server } from './../../../model/server';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input } from '@angular/core';
 

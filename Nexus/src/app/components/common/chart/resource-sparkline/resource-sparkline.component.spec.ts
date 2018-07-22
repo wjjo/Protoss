@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemoryPieChartComponent } from './memory-pie-chart.component';
+import { ResourceSparklineComponent } from './resource-sparkline.component';
 
-describe('MemoryPieChartComponent', () => {
-  let component: MemoryPieChartComponent;
-  let fixture: ComponentFixture<MemoryPieChartComponent>;
+describe('ResourceSparklineComponent', () => {
+  let component: ResourceSparklineComponent;
+  let fixture: ComponentFixture<ResourceSparklineComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemoryPieChartComponent ]
+      declarations: [ ResourceSparklineComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemoryPieChartComponent);
+    fixture = TestBed.createComponent(ResourceSparklineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,8 +2,8 @@ import { ModelProviderService } from './../../services/model-provider/model-prov
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Server } from '../../model/Server';
-import { Service } from '../../model/Service';
+import { Server } from '../../model/server';
+import { Service } from '../../model/service';
 import { FileService } from './../../services/fs/file.service';
 import { ToasterService } from '../../services/notification/toaster.service';
 import { Router } from '@angular/router';

@@ -20,7 +20,7 @@ export class NewPylonModalComponent implements OnInit {
   }
 
   ok() {
-    this.servers.push({host: this.host, serviceNames: []});
+    this.servers.push({host: this.host, services: []});
     this.modalRef.close();
   }
 
