@@ -1,7 +1,7 @@
 {
   "productName": "angular-electron",
   "directories": {
-    "output": "app-builds"
+    "output": "app-builds2"
   },
     "files": [
         "**/*",
@@ -21,9 +21,7 @@
     ],
   "win": {
     "icon": "dist",
-    "target": [
-      "portable"
-    ]
+    "target": "portable:ia32"
   },
   "mac": {
     "icon": "dist",

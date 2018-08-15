@@ -8,7 +8,10 @@ export class ServiceFactory {
       let service = new Services.SpringBootService(description.workingDir, description.name, description.artifactRealPath, description.option);
       return service;
     }
-
+    else if(description.serviceType == 'nginx'){
+      let service = new Services.NginxService(description.workingDir, description.name, description.artifactRealPath, description.option);
+      return service;
+    }
     //
     return new Services.NullService();
   }

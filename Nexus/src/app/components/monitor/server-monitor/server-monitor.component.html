@@ -1,21 +1,18 @@
-<div class="row">
-  {{server.host}}
+<!-- 서버 칼럼 타이틀 -->
+<div class="card">
+  <div class="card-header" [class.text-success]="server.status === 'ON'">{{server.host}}</div>
+  <ngx-dnd-container [model]="server.services" dropZone="1" [dropZone]="1">
+    <ng-template let-model="model" let-template="template">
+      <app-service-monitor [server]="server" [service]="model">
+      </app-service-monitor>
+    </ng-template>
+  </ngx-dnd-container>
 </div>
 
-<div class="row">
-  <div class="col-auto">
-    <div *ngFor="let service of server.services">{{service.name}}</div>
-    <div>Service1</div>
-    <div>Service2</div>
-    <div>Service3</div>
-    <div>Service4</div>
-    <div>Service5</div>
-  </div>
-  <div class="col-auto">
-    <app-resource-sparkline [data]="cpuUsage"></app-resource-sparkline>
-  </div>
-  <div class="col-auto">
-    <app-resource-sparkline [data]="ramUsage"></app-resource-sparkline>
-  </div>
-  {{txt}}
-</div>
+
+<!-- <div class="col-auto">
+      <app-resource-sparkline [data]="cpuUsage"></app-resource-sparkline>
+    </div>
+    <div class="col-auto">
+      <app-resource-sparkline [data]="memUsage"></app-resource-sparkline>
+    </div> -->

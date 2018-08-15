@@ -1,8 +1,12 @@
-import { SystemInfo } from './system-info';
+import { HttpClient } from '@angular/common/http';
+import { SystemInfo } from './system/system-info';
+
 import { Service } from './service';
 
-export class Server {
+export interface Server {
+  status?: string;
   host: string;
   services: Service[];
   systemInfo?: SystemInfo;
+
 }

@@ -3,6 +3,7 @@ import fs = require("fs");
 import child_process = require('child_process');
 import util = require('util');
 import path = require('path');
+import extract_zip = require('extract-zip');
 
 export class NullService implements IService{
   name: string;
@@ -55,13 +56,13 @@ export class SpringBootService implements IService {
 
   private proc?: child_process.ChildProcess;
 
-  constructor(workingDir: string, name: string, artifact: string, jvmOptions: string[]) {
+  constructor(workingDir: string, name: string, artifact: string, jvmOptions: object) {
     this.name = name;
     this.time_started = new Date().getTime().toString()
     this.time_registered = new Date().getTime().toString()
     this.status = 'down';
     this.artifact = artifact;
-    this.jvmOptions = jvmOptions;
+    this.jvmOptions = jvmOptions as (string[]);
   }
 
   start() : boolean {
@@ -125,3 +126,72 @@ export class SpringBootService implements IService {
   }
 }
 
+
+interface NginxOption{
+  python:string;
+  startCommand: string[];
+  stopCommand: string[];
+};
+
+export class NginxService implements IService {
+
+
+  name: string;
+  time_started: string;
+  time_registered: string;
+  status: string;
+  artifact: string;
+  workingDir: string;
+  options: NginxOption;
+
+  private proc?: child_process.ChildProcess;
+
+  constructor(workingDir: string, name: string, artifact: string, options: object) {
+    this.name = name;
+    this.time_started = new Date().getTime().toString()
+    this.time_registered = new Date().getTime().toString()
+    this.status = 'down';
+    this.artifact = artifact;
+    this.options = options as NginxOption;
+    this.workingDir = workingDir;
+  }
+
+  start() : boolean {
+    
+    // 1. artifact uncompress
+    extract_zip(path.resolve(this.artifact), {dir: path.resolve(this.workingDir)}, err => {
+      if(err){
+        console.log('extract failed -', err);
+      }
+      else{
+        console.log('extract complete');
+        // 2. run
+        console.log(this.options.python, this.options.startCommand);
+        this.proc = child_process.spawn(this.options.python, this.options.startCommand, {cwd: path.resolve(this.workingDir)});
+        this.status = 'up';
+        return true;
+      }
+    })
+
+    return false;
+  }
+
+  stop() : boolean {
+    if(this.proc){
+      child_process.spawn(this.options.python, this.options.stopCommand, {cwd: path.resolve(this.workingDir)});
+    }
+    
+    this.status = 'down';
+    return true;
+  }
+
+  toJSON(){
+    var result = {};
+    for (var x in this) {
+        if (x !== "proc") {
+            result[x] = this[x];
+        }
+    }
+    return result;
+  }
+}

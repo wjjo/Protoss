@@ -1,8 +1,9 @@
+import { Server } from './../../model/server';
+import { InstallerService } from './../../services/installer.service';
 import { ModelProviderService } from './../../services/model-provider/model-provider.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Server } from '../../model/server';
 import { Service } from '../../model/service';
 import { FileService } from './../../services/fs/file.service';
 import { ToasterService } from '../../services/notification/toaster.service';
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
     private fileService: FileService,
     private toaster: ToasterService,
     public modelProv: ModelProviderService,
-    private router: Router
+    private router: Router,
+    private installer: InstallerService
   ) {
   }
 
@@ -53,67 +55,17 @@ export class HomeComponent implements OnInit {
     return promise;
   }
 
-  downLoadAndUpload(server: Server, service: Service): Promise<Object> {
-    let promise: Promise<any> = Promise.resolve();
-
-    if (service.artifact) {
-      promise = promise
-        .then(data => {
-          return this.transfer(server, service);
-        })
-        .catch(data => {
-          this.toaster.error('Fail to transfer ' + service.name);
-        })
-        .then(data => {
-          if (data) {
-            this.toaster.success('Success to transfer ' + service.name);
-          }
-        });
-    } else if (service.artifactLink) {
-      promise = promise
-        .then(data => {
-          return this.fileService.download(service.artifactLink);
-        })
-        // 다운로드 실패
-        .catch(data => {
-          this.toaster.error('Fail to download artifact from ' + service.artifactLink);
-        })
-        // 다운로드 성공
-        .then(data => {
-          if (data instanceof Blob) {
-            service.artifact = new File(
-              [data],
-              this.fileService.getOnlyName(service.artifactLink)
-            );
-            return this.transfer(server, service);
-          }
-        })
-        .catch(data => {
-          this.toaster.error('Fail to transfer ' + service.name);
-        })
-        .then(data => {
-          if (data) {
-            console.log(service.name);
-            this.toaster.success('Success to transfer ' + service.name);
-          }
-          return data;
-        });
-    } else {
-      promise = promise.then(data => {
-        this.toaster.error('There must be either artifact or link of artifact');
-      });
-    }
-
-    return promise;
-  }
-
   /**
    * 설치 수행
    */
   install() {
+    this.router.navigate(['monitor']);
+
     let promise: Promise<any> = Promise.resolve();
     this.modelProv.servers.forEach(server => {
       server.services.forEach(service => {
+        server.status = 'unknown';
+
         if (service.prerequisite) {
           promise = promise.then(data => {
             return this.waitForResponse(service.prerequisite, 100);
@@ -121,7 +73,7 @@ export class HomeComponent implements OnInit {
         }
 
         promise = promise.then(data => {
-          return this.downLoadAndUpload(server, service);
+          return this.installer.install(server, service);
         });
       });
     });
@@ -132,24 +84,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  transfer(server: Server, service: Service) {
-    const formData: FormData = new FormData();
-
-    // 명세 추가
-    formData.append(
-      'description',
-      service.description,
-      service.description.name
-    );
-
-    // 산출물 추가
-    formData.append('artifact', service.artifact, service.artifact.name);
-
-    return this.httpClient
-      .post(this.makeServiceUploadUrl(server.host), formData)
-      .toPromise();
-  }
-
   /**
    * 선택된 파일을 서비스화하여 서비스 목록에 추가
    * @param event
@@ -157,29 +91,36 @@ export class HomeComponent implements OnInit {
   fileSelected(event) {
     const fileService = this.fileService;
 
+    const modelProv = this.modelProv;
+
     // For each file,
     Array.prototype.forEach.call(event.target.files, function (file) {
       const fileReader: FileReader = new FileReader();
       fileReader.onload = () => {
         const desc: any = JSON.parse(fileReader.result);
 
-        const artifacts = [];
-        desc.artifacts.forEach(element => {
-          const filePath = fileService.join(fileService.parent(file), element);
-          artifacts.push(fileService.getLocalFile(filePath));
-        });
+        let artifact: File;
 
-        const artifactLinks = [];
-        desc.artifactLinks.forEach(element => {
-          artifactLinks.push(element);
-        });
+        if (desc.artifact) {
+          const filePath = fileService.join(fileService.parent(file.path), desc.artifact);
+          artifact = fileService.getLocalFile(filePath);
+        }
 
-        this.modelservices.services.push({
+        let artifactLink: string;
+        if (desc.artifactLinks) {
+          artifactLink = desc.artifactLink;
+        }
+
+        modelProv.unassginedServices.unshift({
           name: desc.name,
           description: file,
-          artifacts: artifacts,
-          artifactLinks: artifactLinks
+          artifact: artifact,
+          artifactLink: artifactLink,
+          prerequisite: desc.prerequisite,
+          status: 'unknown'
         });
+
+        console.log(modelProv.unassginedServices[0]);
       };
 
       fileReader.readAsText(file);

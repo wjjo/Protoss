@@ -18,7 +18,7 @@ export class ModelProviderService {
   ) {
     this.servers.push({
       host: '127.0.0.1:3000',
-      services: []
+      services: [],
     });
 
     // 서비스 목록 초기화 : 특정 경로 아래 description 파일 읽어와 사용 가능한 서비스 목록을 초기화한다.
@@ -32,8 +32,15 @@ export class ModelProviderService {
     // 모든 description 파일들에 대해...
     descFiles.forEach(fileName => {
       const path = this.fileService.join(serviceDir, fileName);
-      this.unassginedServices.push(this.loadService(path));
+      this.unassginedServices.push(this.loadAvailableService(path));
     });
+
+    if (this.servers.length > 0) {
+      let first: Service;
+      while ((first = this.unassginedServices.shift())) {
+        this.servers[0].services.push(first);
+      }
+    }
   }
 
   OnInit() {
@@ -48,11 +55,11 @@ export class ModelProviderService {
     // 모든 description 파일들에 대해...
     descFiles.forEach(fileName => {
       const path = this.fileService.join(serviceDir, fileName);
-      this.unassginedServices.push(this.loadService(path));
+      this.unassginedServices.push(this.loadAvailableService(path));
     });
   }
 
-  loadService(descPath: string) {
+  private loadAvailableService(descPath: string) {
     const desc = this.fileService.readJsonSync(descPath);
 
     // 산출물 경로
@@ -81,7 +88,8 @@ export class ModelProviderService {
       description: description,
       artifact: artifact,
       artifactLink: desc['artifactLink'],
-      prerequisite: desc['prerequisite']
+      prerequisite: desc['prerequisite'],
+      status: 'in_progress'
     };
   }
 }

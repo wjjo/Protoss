@@ -4,7 +4,7 @@ export class ServiceDescription {
     serviceType: string;
     name: string;
     artifact: string;
-    option: string [];
+    option: object;
     
 
     // 요청시 부여됨

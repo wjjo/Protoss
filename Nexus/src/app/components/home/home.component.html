@@ -1,55 +1,53 @@
 <!-- 설치 버튼 -->
-
-<div class="container">
-  <div class="service-list text-center">
-
+<div class="row" style="height:100%">
+  <div class="col col-3 bg-dark card">
     <!-- 서비스 목록 타이틀 -->
-    <span class="align-middle">Services</span>
-
-    <!-- 서비스 목록 -->
-    <ngx-dnd-container [model]="modelProv.unassginedServices" dropZone="1" [dropZone]="1" [removeOnSpill]="true">
-      <ng-template let-model="model" let-template="template">
-        {{model.name}}
-      </ng-template>
-    </ngx-dnd-container>
-
-    <label class="btn btn-outline-dark text-light border-light margin-top-10px">
-      <input type="file" style="display: none;" multiple="true" (change)="fileSelected($event)" accept="*.json">
-      <i class="material-icons align-middle">
-        add
-      </i>
-      Add Service
-    </label>
-  </div>
-
-  <!-- 서버 목록 -->
-  <div class="server-list text-center">
-    <!-- 서버 칼럼 타이틀 -->
-    <div *ngFor="let server of modelProv.servers" class="text-center">
-      <span class="align-middle">{{server.host}}</span>
-      <ngx-dnd-container [model]="server.services" dropZone="1" [dropZone]="1" [removeOnSpill]="true">
-        <ng-template let-model="model" let-template="template">
-          {{model.name}}
+    <div class="card-header d-flex">
+      <span>Services</span>
+      <div class="mx-auto"></div>
+      <label class="btn bg-none text-light border-none">
+        <input type="file" style="display: none;" multiple="true" (change)="fileSelected($event)" accept=".json">
+        <i class="material-icons align-middle text-white">
+          add
+        </i>
+      </label>
+    </div>
+    <div class="card-body padding-0">
+      <!-- 서비스 목록 -->
+      <ngx-dnd-container [model]="modelProv.unassginedServices" dropZone="1" [dropZone]="1" class="height:100%">
+        <ng-template let-model="model" let-template="template" class="padding-0">
+          <div class="service-symbol d-flex">
+            {{model.name}}
+          </div>
         </ng-template>
       </ngx-dnd-container>
     </div>
-
-    <!-- 서버 추가 모달 -->
-    <ng-template #content let-c="close" let-d="dismiss">
-      <app-new-pylon-modal [servers]="modelProv.servers" [modalRef]="modalRef"></app-new-pylon-modal>
-    </ng-template>
-
-    <!-- 서버 추가 버튼 -->
-    <button (click)="openNewServerModal(content)" type="button" class="btn btn-outline-dark text-light border-light margin-top-10px">
-      <i class="material-icons align-middle">
-        add
-      </i>
-      <span class="align-middle">New Server</span>
-    </button>
+  </div>
+  <div class="col col-lg padding-0" style="background-color: #141414">
+    <!-- 서버 목록 -->
+    <div class="mx-auto server-list">
+      <!-- 서버 칼럼 타이틀 -->
+      <div *ngFor="let server of modelProv.servers">
+        <app-server-monitor [server]="server"></app-server-monitor>
+      </div>
+      <!-- 서버 추가 모달 -->
+      <ng-template #content let-c="close" let-d="dismiss">
+        <app-new-pylon-modal [servers]="modelProv.servers" [modalRef]="modalRef"></app-new-pylon-modal>
+      </ng-template>
+      <!-- 서버 추가 버튼 -->
+      <div class="card">
+        <button (click)="openNewServerModal(content)" type="button" class="btn btn-outline-dark text-light border-none" style="width: 100%">
+          <i class="material-icons align-middle">
+            add
+          </i>
+          <span class="align-middle">New Server</span>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
-<div class="btn-float">
-  <button (click)="install()" type="button" class="btn btn-outline-dark border-light btn-install">
-    <span class="btn-install-text text-lg">INSTALL</span>
+<div class="div-btn-float">
+  <button (click)="install()" type="button" class="btn btn-outline-dark border-light btn-float">
+    <span class="btn-float-text text-lg">INSTALL</span>
   </button>
 </div>

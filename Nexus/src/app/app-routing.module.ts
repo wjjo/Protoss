@@ -5,6 +5,10 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: MonitorComponent
+  },
+  {
     path: 'home',
     component: HomeComponent
   },

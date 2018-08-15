@@ -67,24 +67,56 @@ body {
   margin: 0;
 }
 
-ngx-dnd-container>div {
-  border: 3px solid gray !important;
-  border-radius: 25px;
-  background-color: rgba(0, 0, 0, 0.1) !important;
-  flex-wrap: wrap !important;
-  min-width: 320px !important;
-  max-width: 480px !important;
-  min-height: 60px;
-  margin: 0 !important;
+.ngx-dnd-container:nth-child {
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
-ngx-dnd-item {
+.ngx-dnd-container:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+ngx-dnd-container {
+  background-color: #1a1b22 !important;
+  // background-color: #f00 !important;
+}
+
+ngx-dnd-container>div {
   border: 0px !important;
-  margin: 0px !important;
-  color: #fff;
+  // display: flex;
+  // flex-wrap: wrap !important;
+  min-height: 250px;
+  max-height: 50%;
+  margin: 0 !important;
 }
 
 // 아이템 드래깅 시에 추가되는 클래스
 .gu-mirror {
   text-align: center;
+}
+
+.row {
+  margin: 0px;
+}
+
+.card {
+  // border: 1rem solid #141414;
+  background-color: #1a1b22;
+  padding: 0.5rem;
+}
+
+.padding-0 {
+  padding: 0px;
+}
+
+.border-none {
+  border: none;
+}
+
+ngx-dnd-item {
+  border: 0px !important;
+  color: #fff;
+  text-align: center !important;
+  padding: 0px !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  width:100%;
 }

@@ -1,0 +1,10 @@
+{
+	"name":"UI",
+	"serviceType":"nginx",
+	"option": {
+		"python": "c:/Python27/python.exe",
+		"startCommand" : ["static-ui.py", "start", "http://localhost"],
+		"stopCommand" : ["static-ui.py", "stop"]
+	},
+	"artifact": "Web.zip"
+}

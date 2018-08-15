@@ -1,0 +1,9 @@
+<i *ngIf="status == eStatus.SUCCESS" class="material-icons success align-middle">
+  check
+</i>
+<i *ngIf="status == eStatus.IN_PROGRESS" class="material-icons in-progress align-middle">
+  warning
+</i>
+<i *ngIf="status != eStatus.IN_PROGRESS && status != eStatus.SUCCESS" class="material-icons error align-middle">
+  error
+</i>

@@ -1,0 +1,39 @@
+<div class="row mx-auto">
+  <div class="col-2 d-flex item-center">
+    <!-- 서비스 상태 아이콘 -->
+    <app-status-icon [status]="getStatus(service)">
+    </app-status-icon>
+
+    <!-- 서비스명 -->
+    <span>{{service.name}}</span>
+  </div>
+
+  <!--서비스 프로그래스 -->
+  <div class="col-3 d-flex item-center">
+    <div class="progress full-width">
+      <div *ngIf="getStatus(service) === enumStatus.SUCCESS" class="progress-bar bg-success full-width" role="progressbar"></div>
+      <div *ngIf="getStatus(service) === enumStatus.IN_PROGRESS" class="progress-bar progress-bar-striped bg-info progress-bar-animated full-width"
+        role="progressbar"></div>
+      <div *ngIf="getStatus(service) === enumStatus.ERROR || getStatus(service) === enumStatus.UNKNOWN" class="progress-bar bg-danger full-width"
+        role="progressbar"></div>
+    </div>
+  </div>
+
+  <!-- 작업도구 -->
+  <div class="col-auto item-center">
+    <!-- restart 버튼 -->
+    <button (click)="restart()" type="button" class="btn btn-sm btn-outline-dark margin-top-10px">
+      <i class="material-icons align-middle text-white">
+        refresh
+      </i>
+      <span class="align-middle"></span>
+    </button>
+    <!-- kill 버튼 -->
+    <button (click)="kill()" type="button" class="btn btn-sm btn-outline-dark margin-top-10px">
+      <i class="material-icons align-middle text-red">
+        stop
+      </i>
+      <span class="align-middle"></span>
+    </button>
+  </div>
+</div>

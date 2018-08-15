@@ -1,29 +1,4 @@
-.container {
-  margin: 0;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  -webkit-background-size: cover;
-  /* pour anciens Chrome et Safari */
-  background-size: cover;
-  /* version standardisée */
-  .title {
-    color: white;
-    margin: 0;
-    padding: 50px 20px;
-  }
-}
-
-.service-list {
-  padding: 10px;
-}
-
-.server-list {
-  padding: 10px;
-}
-
 .text-lg {
-  // font-size: 20px;
   font-size: 1.5rem;
 }
 
@@ -31,21 +6,39 @@
   margin-top: 10px;
 }
 
-.btn-float {
+.div-btn-float {
   position: absolute;
   right: 3rem;
   bottom: 3rem;
 }
 
-.btn-install {
+.btn-float {
   border: 0px;
   background-color: #f66375;
 }
 
-.btn-install-text {
+.btn-float-text {
   color: white;
 }
 
-.btn-install-text:hover {
+.btn-float-text:hover {
   color: lightblue;
+}
+
+.server-list {
+  width: 100%;
+}
+
+.bg-none {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.service-symbol {
+  border-width: 5px !important;
+  margin: 0px !important;
+  min-width: 100px;
+}
+
+.padding-0 {
+  padding: 0 !important;
 }

@@ -13,4 +13,8 @@ export interface Service {
 
   // 전제 조건(서비스가 실행되기 전 응답 확인)
   prerequisite: string;
+
+  timeStarted?: number;
+  timeRegistered?: number;
+  status?: string;
 }

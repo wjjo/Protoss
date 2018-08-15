@@ -37,8 +37,10 @@ export class ServiceManager {
   existService(id:string): boolean {
     let it = Collections.find_if(this.services.begin(), this.services.end(), (service:IService) => {
       if(service.name == id){
+        console.log(service.name + 'true');
         return true;
       }
+      console.log(service.name + 'false')
       return false;
     });
     

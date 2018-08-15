@@ -43,13 +43,13 @@ class App {
     });
     
     this.app.get("/services", (req: express.Request, res: express.Response, next: express.NextFunction) => {
-      History.getInstance().put("Request Service List Information(GET)");
+      // History.getInstance().put("Request Service List Information(GET)");
       res.send(ServiceManager.getInstance().getServices())
     });
     
     let artifact = upload.fields([{name:'artifact', maxCount: 1 }, {name:'description',maxCount: 1 }]);
     this.app.post("/services", artifact, (req: express.Request, res: express.Response, next: express.NextFunction) => {
-      History.getInstance().put("Request New Service Information(POST)");
+      // History.getInstance().put("Request New Service Information(POST)");
       uploadCount++;
       if(uploadCount > 10000) uploadCount = 0;
 
@@ -78,6 +78,7 @@ class App {
     this.app.delete("/services/:id", (req: express.Request, res: express.Response, next: express.NextFunction) => {
       History.getInstance().put("Request Delete Service Information(POST)");
       //console.log(req.params.id);
+      console.log(req.params);
       if(ServiceManager.getInstance().existService(req.params.id)){
         ServiceManager.getInstance().stopService(req.params.id);
         res.sendStatus(200);
@@ -95,7 +96,7 @@ class App {
     });
 
     this.app.get("/system", (req: express.Request, res: express.Response, next: express.NextFunction) => {
-      History.getInstance().put("Request System Information(GET)");
+      // History.getInstance().put("Request System Information(GET)");
       System.getInstance().getSystem().then(data => {
         res.send(data)
       });

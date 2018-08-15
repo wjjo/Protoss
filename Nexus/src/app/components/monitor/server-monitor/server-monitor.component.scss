@@ -1,0 +1,49 @@
+.full-width {
+  width : 100%;
+}
+
+.service-item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.col-auto {
+  padding: 0px;
+}
+
+.progress {
+  height: 5px;
+}
+
+.btn-sm {
+  border: 0px;
+  padding: 3px;
+}
+
+.text-red {
+  color: #f00;
+}
+
+.col-auto {
+  padding: 0px;
+}
+
+app-status-icon {
+  margin-right: 5px;
+}
+
+.server-title {
+  display: flex;
+}
+
+.service-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-node {
+  margin: 10px;
+  max-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}
